@@ -1,0 +1,47 @@
+class SetMatrixZeroes {
+    public void setZeroes(int[][] matrix) {
+        
+        // marking col 0 and rows 0 as 0 for any 0s
+        int n = matrix.length; // no of rows
+        int m = matrix[0].length; // no of columns
+        int col0 = 1;
+        // to mark column => matrix[0][j]
+        // to mark row => matrix[i][0]
+        
+        // marking the 2 marker columns
+        for(int i =0; i<n; i++){
+            for(int j=0;j<m;j++){
+                if(matrix[i][j] == 0){
+                    if(j == 0){
+                        col0 = 0;
+                    }
+                    else{
+                        matrix[0][j] = 0;
+                    }
+                    matrix[i][0] = 0;
+                }
+            }
+        }
+        // checking marker columns and setting 0 except marker col/row
+        for(int i=1;i<n; i++){
+            for(int j=1;j<m;j++){
+                if(matrix[0][j] == 0 || matrix[i][0] == 0){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        // setting and checking all row 0th elements
+        if(matrix[0][0] == 0){
+            for(int j=1; j<m ;j++){
+                matrix[0][j] = 0;
+            }
+        }
+        
+        // for col0
+        if(col0 == 0){
+        for(int i=0; i<n; i++){
+            matrix[i][0] = 0;
+        }
+        }
+    }
+}
